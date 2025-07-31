@@ -1,0 +1,83 @@
+<html>
+	<head>
+    	<title>Keyboard</title>
+        <style type="text/css" media="all">
+			body {
+				display: flex;
+				height: 100vh;
+				align-items: center;
+				justify-content: center;
+			}
+			#mid {
+				position: relative;
+				left: 20px;
+			}
+			#last {
+				position: relative;
+				left: 40px;
+			}
+			#btn {
+				position: relative;
+				left: 100px;
+			}
+			input[type="button"]{
+				height: 40px;
+				width: 40px;
+				font-size: 20px;
+				animation: key 2s infinite;
+			}
+			@keyframes key {
+				0%{box-shadow: 0px 0px 7px red;}
+				25%{box-shadow: 0px 0px 7px green;}
+				50%{box-shadow: 0px 0px 7px blue;}
+				75%{box-shadow: 0px 0px 7px yellow;}
+				100%{box-shadow: 0px 0px 7px orange;}
+			}
+			input[type="button"]:hover {
+				transform: scale(1.1)
+			}
+        </style>
+    </head>
+    <body>
+
+		<div class="keyboard">
+			<div class="row">
+				<input type="button" value="Q">
+				<input type="button" value="W">
+				<input type="button" value="E">
+				<input type="button" value="R">
+				<input type="button" value="T">
+				<input type="button" value="Y">
+				<input type="button" value="U">
+				<input type="button" value="I">
+				<input type="button" value="O">
+				<input type="button" value="P">
+			</div>
+			<div class="row" id="mid">
+				<input type="button" value="A">
+				<input type="button" value="S">
+				<input type="button" value="D">
+				<input type="button" value="F">
+				<input type="button" value="G">
+				<input type="button" value="H">
+				<input type="button" value="J">
+				<input type="button" value="K">
+				<input type="button" value="L">
+			</div>
+			<div class="row" id="last">
+				<input type="button" value="Z">
+				<input type="button" value="X">
+				<input type="button" value="C">
+				<input type="button" value="V">
+				<input type="button" value="B">
+				<input type="button" value="N">
+				<input type="button" value="M">
+			</div>
+			<div class="row" id="btn">
+				<input type="button" value="Space" style="width:100px;">
+				<input type="button" value="Clear" style="width:70px;">
+			</div>
+		</div>
+
+	</body>
+</html>
