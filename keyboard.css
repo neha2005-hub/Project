@@ -32,3 +32,9 @@ input[type="button"]{
 input[type="button"]:hover {
     transform: scale(1.1)
 }
+#space {
+    width:100px;
+}
+#clear {
+    width:70px;
+}
