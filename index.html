@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Neha - Card</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+            body {
+                background-color: whitesmoke;
+                width: 100vw;
+                height: 100vh;
+                display: grid;
+                place-content: center;
+            }
+
+            .box{
+                background-color: #072a63;
+                width: 400px;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+            .top {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            .bottom {
+                background: #72b24d;
+                display: flex;
+                justify-content: space-around;
+                border-radius: 0px 0px 10px 10px;
+            }
+
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 100%;
+                border: 4px solid green;
+            }
+
+            h1 {
+                background-color: lightgray;
+                margin: 20px;
+                padding: 3px;
+                border-radius: 20px;
+                border: 2px solid black;
+            }
+
+            p {
+                background-color: white;
+                margin: 20px 3px;
+                padding: 10px;
+                border-radius: 10px;
+                border: 2px solid black;
+            }
+
+            a {
+                color: white;
+                margin: 5px;
+                padding: 5px;
+                text-decoration: none;
+                font-size: 20px;
+                border-radius: 5px;
+            }
+
+            .contact-box {
+                width: 50%;
+                height: 50%;
+                margin: 15px;
+                padding: 10px;
+                background: #083b5c;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .contact-box:hover {
+                transform: translateY(-5px);
+            }
+
+            .contact-box i {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="top">
+                <img src="photo.jpeg" alt="Neha">
+                <h1>Neha Thakur</h1>
+                <p>I am a BCA student.</p>
+            </div>
+
+            <div class="bottom">
+                <div class="contact-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <span><a href="tel:6209836808">Call</a></span>
+                </div>
+                <div class="contact-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span><a href="https://wa.me/+916209836808">WhatsApp</a></span>
+                </div>
+                <div class="contact-box">
+                    <i class="fa-regular fa-envelope"></i>
+                    <span><a href="mailto:neharnp2@gmail.com">Email</a></span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
