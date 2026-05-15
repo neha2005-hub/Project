@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Light On/Off</title>
+
+        <style>
+             *{
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+            body {
+                width: 100vw;
+                height: 100vh;
+                display: grid;
+                place-content: center;
+            }
+            div{
+                background-color: rgb(5, 80, 22);
+                width: 400px;
+                text-align: center;
+                border-radius: 20px;
+            }
+            #bulb {
+                width: 100%;
+                border-radius: 20px 20px 0px 0px;
+            }
+            button {
+                width: 30%;
+                margin: 10px;
+                padding: 0px;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+            }
+            img {
+                width: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="off.png" alt="off" id="bulb">
+            <button onclick="change()" id="btn"><img src="switch_off.png"></button>
+        </div>
+
+        <script>
+            let bulb = document.getElementById('bulb');
+            let btn = document.getElementById('btn');
+            const audio = new Audio('click.mp3');
+            let light = false;
+
+            function change () {
+                audio.play();
+
+                if(light==false) {
+                    bulb.setAttribute("src", "on.png");
+                    light = true;
+                    btn.innerHTML = ' <img src="switch_on.png"> ';
+                }
+                else {
+                    bulb.setAttribute("src", "off.png");
+                    light = false;
+                    btn.innerHTML = ' <img src="switch_off.png"> ';
+                }
+
+            }
+        </script>
+    </body>
+</html>
