@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Door Open/Close</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f0f0f0;
+            }
+
+            .box {
+                display: flex;
+                gap: 30px;
+                background: white;
+                padding: 25px;
+                border-radius: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                align-items: center;
+            }
+
+            img {
+                width: 250px;
+                height: 400px;
+                border-radius: 15px;
+            }
+
+            .control-panel {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .status {
+                text-align: center;
+            }
+
+            .status h2 {
+                margin-bottom: 10px;
+            }
+
+            #status {
+                font-size: 22px;
+                font-weight: bold;
+                color: green;
+            }
+
+            .button {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            button {
+                padding: 12px 20px;
+                border: none;
+                border-radius: 10px;
+                font-size: 16px;
+                cursor: pointer;
+                color: white;
+            }
+
+            .open-btn {
+                background: green;
+            }
+
+            .close-btn {
+                background: red;
+            }
+
+            .reset-btn {
+                background: gray;
+            }
+
+            button:hover {
+                opacity: 0.9;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+
+            <img src="close.png" alt="door" id="door">
+
+            <div class="control-panel">
+
+                <div class="status">
+                    <h2>STATUS</h2>
+                    <div id="status">CLOSED</div>
+                </div>
+
+                <div class="button">
+                    <button class="open-btn" onclick="openDoor()">OPEN DOOR</button>
+                    <button class="close-btn" onclick="closeDoor()">CLOSE DOOR</button>
+                    <button class="reset-btn" onclick="resetDoor()">RESET</button>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            let door = document.getElementById("door");
+            let statusText = document.getElementById("status");
+
+            function openDoor() {
+                door.src = "open.png";
+                statusText.innerHTML = "OPEN";
+                statusText.style.color = "green";
+            }
+
+            function closeDoor() {
+                door.src = "close.png";
+                statusText.innerHTML = "CLOSED";
+                statusText.style.color = "red";
+            }
+
+            function resetDoor() {
+                door.src = "close.png";
+                statusText.innerHTML = "RESET";
+                statusText.style.color = "gray";
+            }
+        </script>
+
+    </body>
+</html>
