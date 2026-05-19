@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spinner</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box;
+            }
+            body {
+                background-color: #032d58;
+                height: 100vh;
+                width: 100vw;
+                display: grid;
+                place-content: center;
+            }
+            
+            div {
+                background-color: #fff;
+                padding: 50px;
+                width: 350px;
+                text-align: center;
+                border-radius: 20px;
+            }
+            @keyframes rotate {
+                0%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+            img{
+                width: 250px;
+                margin-bottom: 50px;
+            }
+
+            .active {
+                animation: rotate 0.9s linear infinite;
+            }
+            button {
+                padding: 15px;
+                width: 60%;
+                background-color: #73b327;
+                font-size: 20px;
+                border-radius: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div>
+            <img id="spinner" src="spin.png">
+            <br>
+            <button id="btn" onclick="control()">START</button>
+
+            <script>
+                let sippner = document.getElementById('spinner');
+                let btn = document.getElementById('btn');
+                let status = false;
+
+                function control () {
+                    if(status==false){
+                        sippner.setAttribute('class', 'active');
+                        status = true;
+                        btn.innerHTML = "STOP";
+                    }
+                    else {
+                        sippner.removeAttribute('class');
+                        status = false;
+                        btn.innerHTML = "START";
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>
