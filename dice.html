@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Dice Roller</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: beige;
+                font-family: Arial, sans-serif;
+            }
+
+            .container{
+                width: 300px;
+                height: auto;
+                text-align: center;
+                background: white;
+                padding: 50px;
+                border-radius: 20px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .dice{
+                width: 150px;
+                height: 150px;
+                background: white;
+                border: 4px solid black;
+                border-radius: 20px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                padding: 15px;
+                margin: 0 auto 50px;
+                transition: transform 0.5s;
+            }
+
+            .rolling{
+                animation: roll 0.6s ease;
+            }
+
+            @keyframes roll{
+                0%{
+                    transform: rotate(0deg) scale(1);
+                }
+                50%{
+                    transform: rotate(180deg) scale(1.2);
+                }
+                100%{
+                    transform: rotate(360deg) scale(1);
+                }
+            }
+
+            .dot{
+                width: 24px;
+                height: 24px;
+                background: black;
+                border-radius: 50%;
+                align-self: center;
+                justify-self: center;
+            }
+
+            button{
+                padding: 12px 25px;
+                font-size: 18px;
+                border: none;
+                border-radius: 12px;
+                background: black;
+                color: white;
+                cursor: pointer;
+                transition: 0.2s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            button:hover{
+                background: #333;
+                transform: scale(1.05);
+            }
+
+            button:active{
+                transform: scale(0.92);
+                background: #555;
+            }
+
+            h2{
+                margin-top: 20px;
+                font-size: 28px;
+            }
+
+            span{
+                color: crimson;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        
+        <div class="container">
+            <div class="dice" id="dice"></div>
+            <button id="rollBtn">🎲 Roll Dice</button>
+            <h2>Score: <span id="score">1</span></h2>
+        </div>
+
+        <script>
+            const dice = document.getElementById("dice");
+            const scoreDisplay = document.getElementById("score");
+            const rollBtn = document.getElementById("rollBtn");
+
+            const diceFaces = {
+                1: [5],
+                2: [1, 9],
+                3: [1, 5, 9],
+                4: [1, 3, 7, 9],
+                5: [1, 3, 5, 7, 9],
+                6: [1, 3, 4, 6, 7, 9]
+            };
+
+            function createFace(number)
+            {
+                dice.innerHTML = "";
+
+                for(let i = 1; i <= 9; i++){
+
+                    const cell = document.createElement("div");
+
+                    if(diceFaces[number].includes(i))
+                    {
+                        cell.classList.add("dot");
+                    }
+
+                    dice.appendChild(cell);
+                }
+            }
+
+            function rollDice()
+            {
+                dice.classList.add("rolling");
+
+                const randomNumber = Math.floor(Math.random() * 6) + 1;
+
+                setTimeout(() => {
+
+                    createFace(randomNumber);
+
+                    scoreDisplay.innerText = randomNumber;
+
+                    dice.classList.remove("rolling");
+
+                }, 500);
+            }
+
+            rollBtn.addEventListener("click", rollDice);
+
+            createFace(1);
+
+        </script>
+    </body>
+</html>
