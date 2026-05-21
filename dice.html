@@ -20,7 +20,7 @@
             }
 
             .container{
-                width: 300px;
+                width: 380px;
                 height: auto;
                 text-align: center;
                 background: white;
@@ -108,12 +108,17 @@
             <div class="dice" id="dice"></div>
             <button id="rollBtn">🎲 Roll Dice</button>
             <h2>Score: <span id="score">1</span></h2>
+            <h2>Total Score: <span id="total">0</span></h2>
+            <h2>Number of Rolls: <span id="rolls">0</span></h2>  
         </div>
 
         <script>
             const dice = document.getElementById("dice");
             const scoreDisplay = document.getElementById("score");
             const rollBtn = document.getElementById("rollBtn");
+
+            let totalScore = 0;
+            let rollCount = 0;
 
             const diceFaces = {
                 1: [5],
@@ -153,6 +158,13 @@
 
                     scoreDisplay.innerText = randomNumber;
 
+                    totalScore += randomNumber;
+
+                    rollCount++;
+
+                    document.getElementById("total").innerText = totalScore;
+                    document.getElementById("rolls").innerText = rollCount;
+
                     dice.classList.remove("rolling");
 
                 }, 500);
@@ -161,7 +173,6 @@
             rollBtn.addEventListener("click", rollDice);
 
             createFace(1);
-
         </script>
     </body>
 </html>
