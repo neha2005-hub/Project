@@ -8,7 +8,12 @@ function sendMessage() {
         return;
     }
 
-    let url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    if(number.length !== 10 || isNaN(number)) {
+        alert("Please enter valid 10 digit number");
+        return;
+    }
+
+    let url = `https://wa.me/+91${number}?text=${encodeURIComponent(message)}`;
 
     window.open(url, "_blank");
 }
