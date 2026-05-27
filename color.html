@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Color Changer</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f4f4f4;
+                transition: background 0.4s ease;
+            }
+
+            .container {
+                text-align: center;
+                background: white;
+                padding: 30px;
+                border-radius: 16px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                width: 320px;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .color-box {
+                width: 100%;
+                height: 300px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+                background: #3498db;
+                transition: background 0.4s ease;
+                display: grid;
+                place-content: center;
+            }
+
+            button {
+                padding: 12px 20px;
+                border: none;
+                border-radius: 10px;
+                background: #222;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+                transition: transform 0.2s ease, background 0.3s ease;
+            }
+
+            button:hover {
+                background: #444;
+                transform: scale(1.05);
+            }
+
+            #colorName{
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+                text-transform: uppercase;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Color Changer</h1>
+            <div class="color-box" id="colorBox">
+                <button id="changeBtn" onclick="changeColor()">Change Color</button>
+            </div>
+            <p id="colorName">blue</p>
+            
+        </div>
+
+        <script>
+            const colors = ['red','yellow','blue','black','green','purple','crimson','aqua','pink'];
+
+            let i = 0;
+
+            let box = document.getElementById('colorBox');
+            let btn = document.getElementById('changeBtn');
+            let colorName = document.getElementById("colorName");
+
+            function changeColor() {
+                if(i != 8){
+                    i++;
+                }
+                else{
+                    i = 0;
+                }
+                box.style.backgroundColor = colors[i];
+                colorName.innerText = colors[i];
+            }
+        </script>
+    </body>
+</html>
