@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Google Style Search</title>
+
+        <style>
+            *{
+                margin:0;
+                padding:0;
+                box-sizing:border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body{
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background:#ffffff;
+            }
+
+            .container{
+                text-align:center;
+                width:90%;
+                max-width:600px;
+            }
+
+            .logo{
+                width:280px;
+                margin-bottom:30px;
+            }
+
+            .search-box{
+                display:flex;
+                align-items:center;
+                border:1px solid #dcdcdc;
+                border-radius:30px;
+                padding:10px 15px;
+                box-shadow:0 1px 6px rgba(32,33,36,0.2);
+            }
+
+            .search-box input{
+                flex:1;
+                border:none;
+                outline:none;
+                font-size:15px;
+                padding:10px;
+            }
+
+            .search-btn{
+                margin-top:25px;
+                padding:12px 30px;
+                border:none;
+                background:#4285f4;
+                color:white;
+                font-size:16px;
+                border-radius:50px;
+                cursor:pointer;
+                transition:0.3s;
+            }
+
+            .search-btn:hover{
+                background:#3367d6;
+            }
+
+            .clear-btn{
+                font-size:20px;
+                cursor:pointer;
+                color:#777;
+                padding:0 8px;
+                user-select:none;
+            }
+
+            .clear-btn:hover{
+                color:black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" class="logo">
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search Google...">
+                <span class="clear-btn" onclick="clearInput()">✖</span>
+            </div>
+
+            <button class="search-btn" onclick="searchGoogle()">Google Search</button>
+        </div>
+
+        <script>
+            function searchGoogle() {
+                let query = document.getElementById("searchInput").value;
+
+                if(query.trim() !== "") {
+                    window.location.href ="https://www.google.com/search?q=" + encodeURIComponent(query);
+                }
+            }
+
+            document.getElementById("searchInput").addEventListener("keypress", function(event) {
+                if(event.key === "Enter") {
+                    searchGoogle();
+                }
+
+            });
+
+            function clearInput(){
+                document.getElementById("searchInput").value = "";
+                document.getElementById("searchInput").focus();
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Stylish Buttons</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #141e30, #243b55);
+            }
+
+            .card{
+                background: rgba(255,255,255,0.1);
+                padding: 40px;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+                text-align: center;
+                width: 350px;
+            }
+
+            .card h1{
+                color: white;
+                margin-bottom: 30px;
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+
+            .buttons{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            button{
+                padding: 15px;
+                border: none;
+                border-radius: 12px;
+                font-size: 18px;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            button:hover{
+                transform: translateY(-4px) scale(1.03);
+            }
+
+            .google{
+                background: linear-gradient(45deg, #4285F4, #34A853);
+            }
+
+            .github{
+                background: linear-gradient(45deg, #24292e, #586069);
+            }
+
+            .youtube{
+                background: linear-gradient(45deg, #ff0000, #cc0000);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>Quick Links</h1>
+
+            <div class="buttons">
+                <button class="google" onclick="openGoogle()">Google</button>
+                <button class="github" onclick="openGithub()">GitHub</button>
+                <button class="youtube" onclick="openYoutube()">YouTube</button>
+            </div>
+        </div>
+
+        <script>
+            function openGoogle() {
+                window.location.href = "google.html";
+            }
+
+            function openGithub() {
+                window.location.href = "https://github.com/neha2005-hub";
+            }
+
+            function openYoutube() {
+                window.location.href = "https://www.youtube.com";
+            }
+        </script>
+    </body>
+</html>
