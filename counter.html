@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Counter</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(1, 21, 21);
+            }
+
+            .counter-box{
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                width: 400px;
+                height: 400px;
+                display: grid;
+                place-content: center;
+            }
+
+            h1{
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            #count{
+                font-size: 80px;
+                margin-bottom: 20px;
+                color: #007bff;
+            }
+
+            .buttons{
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            button{
+                padding: 15px;
+                border: none;
+                border-radius: 8px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .increase{
+                background: #28a745;
+                color: white;
+            }
+
+            .decrease{
+                background: #dc3545;
+                color: white;
+            }
+
+            .reset{
+                background: #6c757d;
+                color: white;
+            }
+
+            button:hover{
+                opacity: 0.8;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="counter-box">
+            <h1>Counter</h1>
+            <div id="count">0</div>
+
+            <div class="buttons">
+                <button class="decrease">-</button>
+                <button class="reset">Reset</button>
+                <button class="increase">+</button>
+            </div>
+        </div>
+
+        <script>
+            let count = 0;
+
+            const countDisplay = document.getElementById("count");
+
+            const increaseBtn = document.querySelector(".increase");
+            const decreaseBtn = document.querySelector(".decrease");
+            const resetBtn = document.querySelector(".reset");
+
+            increaseBtn.addEventListener("click", () => {
+                count++;
+                countDisplay.innerText = count;
+            });
+
+            decreaseBtn.addEventListener("click", () => {
+                count--;
+                countDisplay.innerText = count;
+            });
+
+            resetBtn.addEventListener("click", () => {
+                count = 0;
+                countDisplay.innerText = count;
+            });
+        </script>
+    </body>
+</html>
