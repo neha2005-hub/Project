@@ -96,12 +96,12 @@
             <button class="number" onclick="appendValue('7')">7</button>
             <button class="number" onclick="appendValue('8')">8</button>
             <button class="number" onclick="appendValue('9')">9</button>
-            <button class="operator" onclick="appendValue('-')">-</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
 
             <button class="number" onclick="appendValue('4')">4</button>
             <button class="number" onclick="appendValue('5')">5</button>
             <button class="number" onclick="appendValue('6')">6</button>
-            <button class="operator" onclick="appendValue('+')">+</button>
+            <button class="operator" onclick="appendValue('-')">-</button>
 
             <button class="number" onclick="appendValue('1')">1</button>
             <button class="number" onclick="appendValue('2')">2</button>
@@ -115,12 +115,10 @@
         </div>
 
         <script>
-
             let display = document.getElementById('display');
 
             function appendValue(data) {
-
-                let operators = ['+', '-', '*', '/', '%'];
+                let operators = ['+', '-', '*', '/'];
 
                 if (data == 'c') 
                 {
@@ -132,21 +130,70 @@
                 }
                 else if (data == '=') 
                 {
+                    if (display.value == "") {
+                        return;
+                    }
+                    try {
+                        let expression = display.value;
 
-                    if (display.value != "") {
-                        display.value = eval(display.value);
+                        expression = expression.replace(/(\d+(\.\d+)?)([\+\-])(\d+(\.\d+)?)%/g,
+                            (match, num1, _, operator, num2) => {
+
+                                let value =
+                                    `${num1}${operator}(${num1}*${num2}/100)`;
+
+                                return value;
+                            }
+                        );
+
+                        expression = expression.replace(/(\d+(\.\d+)?)([\*\/])(\d+(\.\d+)?)%/g,
+                            (match, num1, _, operator, num2) => {
+                                return `${num1}${operator}(${num2}/100)`;
+                            }
+                        );
+
+                        expression = expression.replace(/(\d+(\.\d+)?)%/g,'($1/100)');
+
+                        let result = eval(expression);
+
+                        if (!isFinite(result)) {
+                            display.value = "Error";
+                            return;
+                        }
+                        display.value = parseFloat(result.toFixed(10));
+                    }
+                    catch {
+                        display.value = "Error";
                     }
                 }
-                else if (data == '.') 
-                {
-                    let parts = display.value.split(/[\+\-\*\/%]/);
+                else if (data == '.') {
+                    let lastChar = display.value.at(-1);
+
+                    if (display.value == "" || operators.includes(lastChar)) {
+                        display.value += '0.';
+                        return;
+                    }
+
+                    let parts = display.value.split(/[\+\-\*\/]/);
                     let lastNumber = parts[parts.length - 1];
 
                     if (!lastNumber.includes('.')) {
-                        display.value += data;
+                        display.value += '.';
                     }
                 }
-                 else if (operators.includes(data)) {
+
+                else if (data == '%') {
+                    let lastChar = display.value.at(-1);
+
+                    if (display.value != "" && !operators.includes(lastChar) && lastChar != '%' && lastChar != '.') {
+                        display.value += '%';
+                    }
+                }
+                else if (operators.includes(data)) {
+                    if (display.value == "" && data == '-') {
+                        display.value += '-';
+                        return;
+                    }
 
                     if (display.value == "") {
                         return;
@@ -154,14 +201,38 @@
 
                     let lastChar = display.value.at(-1);
 
-                    if (!operators.includes(lastChar)) {
+                    if (!operators.includes(lastChar) && lastChar != '.') {
                         display.value += data;
                     }
                 }
                 else {
+                    let lastChar = display.value.at(-1);
+
+                    if (lastChar == '%') {
+                        return;
+                    }
                     display.value += data;
                 }
             }
+            document.addEventListener('keydown', (e) => {
+                let key = e.key;
+
+                if (!isNaN(key)) {
+                    appendValue(key);
+                }
+                else if (['+', '-', '*', '/', '.','%'].includes(key)) {
+                    appendValue(key);
+                }
+                else if (key == 'Enter') {
+                    appendValue('=');
+                }
+                else if (key == 'Backspace') {
+                    appendValue('⌫');
+                }
+                else if (key == 'Escape') {
+                    appendValue('c');
+                }
+            });
         </script>
     </body>
 </html>
