@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Task Manager</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f4f4f4;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 500px;
+                background: white;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .input-box {
+                display: flex;
+                gap: 10px;
+            }
+
+            input {
+                flex: 1;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            button {
+                padding: 10px 15px;
+                border: none;
+                background: #007bff;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            button:hover {
+                background: #0056b3;
+            }
+
+            #taskList {
+                margin-top: 20px;
+                list-style: none;
+            }
+
+            .task {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                margin-bottom: 10px;
+                background: #eee;
+                border-radius: 5px;
+            }
+
+            .task.completed span {
+                text-decoration: line-through;
+                color: gray;
+            }
+
+            .actions {
+                display: flex;
+                gap: 5px;
+            }
+
+            .complete-btn {
+                background: green;
+            }
+
+            .delete-btn {
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Task Manager</h1>
+
+            <div class="input-box">
+                <input type="text" id="taskInput" placeholder="Enter a task">
+                <button id="addBtn">Add Task</button>
+            </div>
+
+            <ul id="taskList"></ul>
+        </div>
+
+        <script>
+            const taskInput = document.getElementById("taskInput");
+            const addBtn = document.getElementById("addBtn");
+            const taskList = document.getElementById("taskList");
+
+            addBtn.addEventListener("click", addTask);
+
+            taskInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    addTask();
+                }
+            });
+
+            function addTask() {
+                const taskText = taskInput.value.trim();
+
+                if (taskText === "") {
+                    alert("Please enter a task");
+                    return;
+                }
+
+                const li = document.createElement("li");
+                li.classList.add("task");
+
+                li.innerHTML = `
+                    <span>${taskText}</span>
+                    <div class="actions">
+                        <button class="complete-btn">✓</button>
+                        <button class="delete-btn">✕</button>
+                    </div>
+                `;
+
+                const completeBtn = li.querySelector(".complete-btn");
+                const deleteBtn = li.querySelector(".delete-btn");
+
+                completeBtn.addEventListener("click", () => {
+                    li.classList.toggle("completed");
+                });
+
+                deleteBtn.addEventListener("click", () => {
+                    li.remove();
+                });
+
+                taskList.appendChild(li);
+                taskInput.value = "";
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: blue;
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            place-content: center;
+        }
+        #main {
+            background-color: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+        }
+        #input {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+        #input * {
+            padding: 8px;
+            font-size: 15px;
+        }
+        button{
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="input">
+            <input id="upi" type="text" placeholder="UPI Id">
+            <input id="amount" type="number" placeholder="Amount">
+            <button id="button" onclick="generate()">Pay Now</button>
+        </div>
+        <div id="qrcode">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const upi = document.getElementById("upi");
+        const amount = document.getElementById("amount");
+        let qrcode = document.getElementById("qrcode");
+
+        function generate () {
+
+            if (upi.value.trim() === "") {
+                alert("Please enter UPI ID");
+                return;
+            }
+            qrcode.innerHTML = "";
+            qrcode.style.margin = "20px auto";
+            let data = `upi://pay?pa=${upi.value}&am=${amount.value}`;
+            new QRCode(qrcode, { text: data, width: 200, height: 200 });
+        }
+    </script>
+</body>
+</html>

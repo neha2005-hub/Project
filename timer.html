@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Timer</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #2c2b2b;
+            }
+
+            .timer-container {
+                text-align: center;
+                background: gray;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            }
+
+            input {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+                padding: 10px;
+                font-size: 1rem;
+                text-align: center;
+                margin-bottom: 20px;
+                border-radius: 10px;
+            }
+
+            #clock{
+                background-color: aqua;
+                margin: 20px;
+                padding: 10px;
+                text-align: center;
+                height: 180px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                border-radius: 10px;
+            }
+
+            #display {
+                font-size: 4rem;
+                margin-bottom: 20px;
+                background-color: white;
+                padding: 10px;
+                border-radius: 100px;
+            }
+
+            .buttons button {
+                padding: 10px 20px;
+                margin: 5px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+            .buttons button:hover {
+                opacity: 0.8;
+            }
+
+            #start {
+                background-color: green;
+            }
+
+            #pause {
+                background-color: yellow;
+            }
+
+            #reset {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="timer-container">
+            <input type="text" id="task" placeholder="Enter Task">
+            <input type="number" id="minutes" placeholder="Minutes" min="1">
+            
+            <div id="clock">
+                <h3 id="currentTask">No Task</h3>
+                <h1 id="display">00:00</h1>
+            </div>
+
+            <div class="buttons">
+                <button onclick="startTimer()" id="start">Start</button>
+                <button onclick="pauseTimer()" id="pause">Pause</button>
+                <button onclick="resetTimer()" id="reset">Reset</button>
+            </div>
+        </div>
+
+        <script>
+            let timer;
+            let totalSeconds = 0;
+
+            function updateDisplay() {
+                let minutes = Math.floor(totalSeconds / 60);
+                let seconds = totalSeconds % 60;
+
+                document.getElementById("display").textContent =
+                    String(minutes).padStart(2, "0") + ":" +
+                    String(seconds).padStart(2, "0");
+            }
+
+            function startTimer() {
+                if (totalSeconds === 0) 
+                {
+                    let mins = parseInt(document.getElementById("minutes").value);
+                    let task = document.getElementById("task").value.trim();
+
+                    if (!mins || mins <= 0) {
+                        alert("Enter valid minutes");
+                        return;
+                    }
+
+                    if (task === "") {
+                        alert("Enter a task");
+                        return;
+                    }
+
+                    document.getElementById("currentTask").textContent =
+                        "Current Task: " + task;
+
+                    totalSeconds = mins * 60;
+                }
+
+                clearInterval(timer);
+
+                timer = setInterval(() => {
+                    if (totalSeconds > 0) {
+                        totalSeconds--;
+                        updateDisplay();
+                    } else {
+                        clearInterval(timer);
+                        alert(
+                            "Task Completed: " +
+                            document.getElementById("task").value
+                        );
+                    }
+                }, 1000);
+
+                updateDisplay();
+            }
+
+            function pauseTimer() {
+                clearInterval(timer);
+            }
+
+            function resetTimer() {
+                clearInterval(timer);
+                totalSeconds = 0;
+
+                document.getElementById("display").textContent = "00:00";
+                document.getElementById("minutes").value = "";
+                document.getElementById("task").value = "";
+                document.getElementById("currentTask").textContent = "No Task";
+            }
+        </script>
+    </body>
+</html>
