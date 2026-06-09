@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Show Card</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: gray;
+            }
+
+            #main {
+                width: 380px;
+                background: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+            }
+
+            #result {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            #score {
+                background: green;
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                padding: 10px 20px;
+                border: none;
+                background: #0077ff;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background: #005ad1;
+            }
+
+            #allbox {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .box {
+                height: 70px;
+                background: crimson;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 28px;
+                color: crimson;
+                cursor: pointer;
+                user-select: none;
+                transition: .3s;
+            }
+
+            .box:hover {
+                transform: scale(1.05);
+            }
+
+            .box.open {
+                color: white;
+            }
+
+            .box.disabled {
+                pointer-events: none;
+            }
+
+            #msg {
+                text-align: center;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="result">
+                <h1 id="score">Score: 0</h1>
+                <button id="startbtn" onclick="start()">Start</button>
+            </div>
+
+            <div id="allbox">
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+                <div class="box" onclick="show(this)">0</div>
+            </div>
+
+            <p id="msg">Click Cards, You can reveal only 4 Cards </p>
+        </div>
+
+        <script>
+            const boxes = document.querySelectorAll(".box");
+            const score = document.getElementById("score");
+            const startBtn = document.getElementById("startbtn");
+            const msg = document.getElementById("msg");
+            const board = document.getElementById("allbox");
+            let gameStarted = false;
+
+            let totalScore = 0;
+            let attempts = 0;
+            const MAX_ATTEMPTS = 4;
+
+            startBtn.addEventListener("click", start);
+
+            function start() {
+                gameStarted = true;
+                totalScore = 0;
+                attempts = 0;
+
+                score.textContent = "Score: 0";
+                msg.textContent = `Reveal only ${MAX_ATTEMPTS} cards`;
+
+                board.style.display = "grid";
+                msg.style.display = "block";
+                startBtn.textContent = "Restart";
+
+                boxes.forEach(box => {
+                    box.textContent = random(1, 99);
+                    box.classList.remove("open", "disabled");
+                });
+            }
+
+            function show(box) {
+                if (!gameStarted) {
+                    return;
+                }
+                
+                if (box.classList.contains("disabled")) {
+                    return;
+                }
+
+                if (attempts >= MAX_ATTEMPTS) {
+                    alert("Game Over! Press Restart.");
+                    return;
+                }
+
+                box.classList.add("open", "disabled");
+
+                totalScore += Number(box.textContent);
+                attempts++;
+
+                score.textContent = `Score: ${totalScore}`;
+
+                if (attempts === MAX_ATTEMPTS) {
+                    msg.textContent = `Game Over! Final Score: ${totalScore}`;
+                }
+            }
+
+            function random(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        </script>
+    </body>
+</html>
