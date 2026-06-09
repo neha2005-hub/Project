@@ -1,40 +1,113 @@
-body {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
-#mid {
-    position: relative;
-    left: 20px;
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#141e30,#243b55);
 }
-#last {
-    position: relative;
-    left: 40px;
+
+.container{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    text-align:center;
 }
-#btn {
-    position: relative;
-    left: 100px;
+
+h2{
+    margin-bottom:15px;
 }
-input[type="button"]{
-    height: 40px;
-    width: 40px;
-    font-size: 20px;
-    animation: key 2s infinite;
+
+#display{
+    width:100%;
+    height:45px;
+    font-size:22px;
+    padding:10px;
+    margin-bottom:20px;
+    border:2px solid #3498db;
+    border-radius:8px;
 }
-@keyframes key {
-    0%{box-shadow: 0px 0px 7px red;}
-    25%{box-shadow: 0px 0px 7px green;}
-    50%{box-shadow: 0px 0px 7px blue;}
-    75%{box-shadow: 0px 0px 7px yellow;}
-    100%{box-shadow: 0px 0px 7px orange;}
+
+.row{
+    display:flex;
+    justify-content:center;
+    margin:8px 0;
 }
-input[type="button"]:hover {
-    transform: scale(1.1)
+
+.middle{
+    margin-left:25px;
 }
-#space {
-    width:100px;
+
+.last{
+    margin-left:50px;
 }
-#clear {
+
+button{
+    width:50px;
+    height:50px;
+    margin:4px;
+    font-size:20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#f2f2f2;
+    transition:.2s;
+    animation:keyGlow 2s infinite;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#3498db;
+    color:white;
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+#space{
+    width:180px;
+}
+
+#backspace{
     width:70px;
+}
+
+#clear{
+    width:90px;
+    background:#ff4d4d;
+    color:white;
+}
+
+#clear:hover{
+    background:#cc0000;
+}
+
+@keyframes keyGlow{
+    0%{
+        box-shadow:0 0 8px red;
+    }
+
+    25%{
+        box-shadow:0 0 8px green;
+    }
+
+    50%{
+        box-shadow:0 0 8px blue;
+    }
+
+    75%{
+        box-shadow:0 0 8px orange;
+    }
+
+    100%{
+        box-shadow:0 0 8px violet;
+    }
 }

@@ -1,48 +1,57 @@
 <html>
 	<head>
-    	<title>Keyboard</title>
-        <link rel="stylesheet" href="keyboard.css">
-    </head>
-    <body>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Virtual Keyboard</title>
+		<link rel="stylesheet" href="keyboard.css">
+	</head>
+	<body>
+		<div class="container">
+			<h2>Virtual Keyboard</h2>
+			<input type="text" id="display" placeholder="Type here..." readonly>
+			<div class="keyboard">
+				<div class="row">
+					<button class="key">Q</button>
+					<button class="key">W</button>
+					<button class="key">E</button>
+					<button class="key">R</button>
+					<button class="key">T</button>
+					<button class="key">Y</button>
+					<button class="key">U</button>
+					<button class="key">I</button>
+					<button class="key">O</button>
+					<button class="key">P</button>
+				</div>
 
-		<div class="keyboard">
-			<div class="row">
-				<input type="button" value="Q">
-				<input type="button" value="W">
-				<input type="button" value="E">
-				<input type="button" value="R">
-				<input type="button" value="T">
-				<input type="button" value="Y">
-				<input type="button" value="U">
-				<input type="button" value="I">
-				<input type="button" value="O">
-				<input type="button" value="P">
-			</div>
-			<div class="row" id="mid">
-				<input type="button" value="A">
-				<input type="button" value="S">
-				<input type="button" value="D">
-				<input type="button" value="F">
-				<input type="button" value="G">
-				<input type="button" value="H">
-				<input type="button" value="J">
-				<input type="button" value="K">
-				<input type="button" value="L">
-			</div>
-			<div class="row" id="last">
-				<input type="button" value="Z">
-				<input type="button" value="X">
-				<input type="button" value="C">
-				<input type="button" value="V">
-				<input type="button" value="B">
-				<input type="button" value="N">
-				<input type="button" value="M">
-			</div>
-			<div class="row" id="btn">
-				<input type="button" value="Space" id="space">
-				<input type="button" value="Clear" id="clear">
+				<div class="row middle">
+					<button class="key">A</button>
+					<button class="key">S</button>
+					<button class="key">D</button>
+					<button class="key">F</button>
+					<button class="key">G</button>
+					<button class="key">H</button>
+					<button class="key">J</button>
+					<button class="key">K</button>
+					<button class="key">L</button>
+				</div>
+
+				<div class="row last">
+					<button class="key">Z</button>
+					<button class="key">X</button>
+					<button class="key">C</button>
+					<button class="key">V</button>
+					<button class="key">B</button>
+					<button class="key">N</button>
+					<button class="key">M</button>
+				</div>
+
+				<div class="row buttons">
+					<button id="space">Space</button>
+					<button id="backspace">⌫</button>
+					<button id="clear">Clear</button>
+				</div>
 			</div>
 		</div>
-
+		<script src="keyboard.js"></script>
 	</body>
 </html>
