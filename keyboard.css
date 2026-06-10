@@ -14,15 +14,16 @@ body{
 }
 
 .container{
+    width: auto;
     background:white;
-    padding:25px;
-    border-radius:15px;
+    padding:15px;
+    border-radius:20px;
     box-shadow:0 10px 25px rgba(0,0,0,.3);
     text-align:center;
 }
 
 h2{
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 #display{
@@ -30,7 +31,7 @@ h2{
     height:45px;
     font-size:22px;
     padding:10px;
-    margin-bottom:20px;
+    margin-bottom:10px;
     border:2px solid #3498db;
     border-radius:8px;
 }
@@ -42,16 +43,16 @@ h2{
 }
 
 .middle{
-    margin-left:25px;
+    margin-left:10px;
 }
 
 .last{
-    margin-left:50px;
+    margin-left:10px;
 }
 
 button{
-    width:50px;
-    height:50px;
+    width:25px;
+    height:30px;
     margin:4px;
     font-size:20px;
     border:none;
@@ -73,15 +74,15 @@ button:active{
 }
 
 #space{
-    width:180px;
+    width:110px;
 }
 
 #backspace{
-    width:70px;
+    width:50px;
 }
 
 #clear{
-    width:90px;
+    width:110px;
     background:#ff4d4d;
     color:white;
 }
