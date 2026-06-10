@@ -1,4 +1,3 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -14,8 +13,8 @@ body {
 }
 
 .parent {
-    width: 80%;
-    max-width: 1400px;
+    width: fit-content;;
+    max-width: 1350px;
     margin: auto;
     padding: 20px;
     background-color: gray;
@@ -40,20 +39,17 @@ body {
 }
 
 .letter{
-    flex:1 1 250px;
+    flex:1 1 200px;
     max-width:300px;
     min-height:220px;
-
     border:5px solid #000033;
     background:white;
     border-radius:10px;
     padding:15px;
-
     display:flex;
     align-items:center;
     justify-content:center;
     gap:10px;
-
     transition:0.3s;
 }
 
@@ -62,14 +58,13 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.letter h2,
-.letter h3 {
-    font-size: 6rem;
+.letter h2, .letter h3 {
+    font-size: 8rem;
     color: #000033;
 }
 
 .letter img {
-    width: 120px;
+    width: 150px;
     height: auto;
     object-fit: contain;
 }
@@ -80,20 +75,4 @@ body {
 
 #q {
     width: 110px;
-}
-
-@media (max-width: 600px) {
-    .letter {
-        width: 100%;
-        max-width: 320px;
-    }
-
-    .letter h2,
-    .letter h3 {
-        font-size: 4rem;
-    }
-
-    .letter img {
-        width: 90px;
-    }
 }
