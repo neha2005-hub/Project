@@ -130,7 +130,7 @@
 
             const url = new URL(currentURL);
             url.searchParams.delete('v');
-            url.searchParams.set("v", videoId);
+            url.searchParams.set("currentURL", videoId);
             window.history.replaceState(null, '', url);
         }
 
