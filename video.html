@@ -1,151 +1,213 @@
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YouTube Player</title>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Player</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
 
-        body {
-            background: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+            body {
+                background: wheat;
+            }
 
-        .container {
-            width: 400px;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, .5);
-        }
+            .navbar {
+                width: 100%;
+                height: 70px;
+                background: #000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+                position: sticky;
+                top: 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+            }
 
-        h2 {
-            color: black;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+            .logo i {
+                color: wheat;
+                font-size: 42px;
+                cursor: pointer;
+            }
 
-        .controls {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 20px;
-        }
+            .search-box {
+                flex: 1;
+                max-width: 650px;
+                margin: 0 30px;
+                position: relative;
+            }
 
-        input {
-            flex: 1;
-            background-color: wheat;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 15px;
-        }
+            .search-box input {
+                width: 100%;
+                height: 45px;
+                border: none;
+                outline: none;
+                border-radius: 25px;
+                padding: 0 50px 0 18px;
+                font-size: 16px;
+                background: white;
+            }
 
-        button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 15px;
-            color: white;
-        }
+            .search-box i {
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #555;
+                font-size: 18px;
+                cursor: pointer;
+            }
 
-        #playBtn {
-            background: #ff0000;
-        }
+            #shareBtn {
+                width: 45px;
+                height: 45px;
+                border: none;
+                border-radius: 50%;
+                background: #28a745;
+                cursor: pointer;
+                transition: .3s;
+            }
 
-        #shareBtn {
-            background: #28a745;
-        }
+            #shareBtn:hover {
+                transform: scale(1.05);
+            }
 
-        button:hover {
-            opacity: .9;
-        }
+            #shareBtn i {
+                color: white;
+                font-size: 18px;
+            }
 
-        .player {
-            width: 100%;
-            height: 350px;
-        }
+            .player-container {
+                display: flex;
+                justify-content: center;
+                padding: 25px;
+            }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 8px;
-        }
-    </style>
-</head>
+            .player {
+                width: 100%;
+                max-width: 1000px;
+                height: 550px;
+                background: black;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 15px rgba(0, 0, 0, .4);
+            }
 
-<body>
-    <div class="container">
-        <h2>YouTube Video Player</h2>
+            .player iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
 
-        <div class="controls">
-            <input id="videoInput" type="text" placeholder="Paste YouTube URL">
-            <button id="playBtn" onclick="change()">Play</button>
-            <button id="shareBtn" onclick="share()">Share</button>
+            @media(max-width:768px) {
+
+                .navbar {
+                    padding: 10px;
+                    gap: 10px;
+                }
+
+                .logo i {
+                    font-size: 32px;
+                }
+
+                .search-box {
+                    margin: 0 10px;
+                }
+
+                .search-box input {
+                    font-size: 14px;
+                    height: 40px;
+                }
+
+                #shareBtn {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .player {
+                    height: 300px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="navbar">
+            <div class="logo"><i class="fa-brands fa-youtube" onclick="goHome()"></i></div>
+
+            <div class="search-box">
+                <input id="videoInput" type="text" placeholder="Paste YouTube URL">
+                <i class="fa-solid fa-magnifying-glass" onclick="change()"></i>
+            </div>
+
+            <button id="shareBtn" onclick="share()"><i class="fa-solid fa-share"></i></button>
         </div>
 
-        <div class="player">
-            <iframe id="frame" src="https://www.youtube.com/embed/oafxkMv4xnc?si=tFeel3n1nn3_MPxB" allowfullscreen></iframe>
+        <div class="player-container">
+            <div class="player">
+                <iframe id="frame" src="https://www.youtube.com/embed/oafxkMv4xnc" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
 
-    <script>
-        const queryString = window.location.search;
-        const currentURL = window.location.href;
-        const urlParams = new URLSearchParams(queryString);
+        <script>
+            const queryString = window.location.search;
+            const currentURL = window.location.origin + window.location.pathname;
+            const urlParams = new URLSearchParams(queryString);
 
-        let frame = document.getElementById("frame");
-        let videoInput = document.getElementById("videoInput");
+            let frame = document.getElementById("frame");
+            let videoInput = document.getElementById("videoInput");
 
-        let videoId = urlParams.get("v");
+            let videoId = urlParams.get("v") || "";
 
-        if (videoId.length >= 10) {
-            frame.src = "https://www.youtube.com/embed/" + videoId;
-        }
+            function goHome() {
+                window.location.href = window.location.origin + window.location.pathname;
+            }
 
-        function change() {
+            if (videoId.length >= 11) {
+                frame.src = "https://www.youtube.com/embed/" + videoId;
+            }
 
-            let link = videoInput.value;
+            function getVideoId(link) {
+                let regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
+                let match = link.match(regExp);
+                return match ? match[1] : null;
+            }
 
-            if (link.length != 48) {
-                alert("Invalid Video Link");
+            function change() {
+                let link = videoInput.value.trim();
+                let id = getVideoId(link);
+
+                if (!id) {
+                    alert("Invalid Video Link");
+                    videoInput.value = "";
+                    return;
+                }
+                videoId = id;
+                frame.src = "https://www.youtube.com/embed/" + videoId;
                 videoInput.value = "";
-                return;
+
+                const url = new URL(window.location);
+
+                url.searchParams.set("v", videoId);
+                window.history.replaceState({}, '', url);
             }
 
-            videoId = link.slice(17,28);
-            frame.src = "https://www.youtube.com/embed/" + videoId;
-            videoInput.value = "";
+            function share() {
+                if (videoId == "") {
+                    alert("No Video to share");
+                    return;
+                }
+                
+                let shareLink = currentURL + "?v=" + videoId;
 
-            const url = new URL(currentURL);
-            url.searchParams.delete('v');
-            url.searchParams.set("currentURL", videoId);
-            window.history.replaceState(null, '', url);
-        }
-
-        function share() {
-
-            if (videoId == "") {
-                alert("No Video to share - Please input some link");
-                return;
+                window.open("https://wa.me/?text=" + encodeURIComponent("Play Ad-Free Video: " + shareLink), "_blank");
             }
-
-            let shareLink = currentURL + "?v=" + videoId;
-
-            window.location = 'https://wa.me/?text=Play Ad-Free Video: ' + encodeURI(currentURL);
-        }
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
